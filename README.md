@@ -65,8 +65,11 @@ console.log(solved_dimensions)
 //   {
 //     "from": { "x": 2.01, "y": 2.5 },
 //     "to": { "x": -2.01, "y": -2.5 },
-//     "axis": "x",
-//     "offset": 5
+//     "offset_distance": 5,
+//     "offset_direction": {
+//       "x": 0,
+//       "y": 1
+//     }
 //   }
 // ]
 ```
@@ -80,16 +83,10 @@ export interface CreatedDimension {
   /** The two points on the PCB being dimensioned */
   from: { x: number; y: number }
   to: { x: number; y: number }
-  /** The axis the dimension is measuring */
-  axis: "x" | "y"
-  /**
-   * The distance from the furthest point to the dimension line.
-   *
-   * If axis is "x", this is the y-distance from the top-most point to the
-   * dimension line.
-   * If axis is "y", this is the x-distance from the right-most point to the
-   * dimension line.
-   */
-  offset: number
+  offset_distance?: number | string // e.g. 5 or "5mm"
+  offset_direction?: {
+    x: number
+    y: number
+  }
 }
 ```
