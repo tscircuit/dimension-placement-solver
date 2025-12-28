@@ -1,0 +1,22 @@
+{
+  "name": "dimension-placement-solver",
+  "version": "0.0.1",
+  "author": "",
+  "main": "dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsup-node ./src/index.ts --format esm --dts --sourcemap",
+    "format": "biome format . --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@tscircuit/solver-utils": "^0.0.9",
+    "circuit-json": "^0.0.349",
+    "tsup-node": "^0.1.0"
+  }
+}
