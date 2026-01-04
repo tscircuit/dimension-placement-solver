@@ -1,10 +1,10 @@
 import { expect, test } from "bun:test"
 import { type AnyCircuitElement } from "circuit-json"
 import { DimensionPlacementSolver } from "../src/index"
-import circuitJson from "./assets/component-to-board.json"
+import circuitJson from "./assets/board-to-panel.json"
 import createPcbSvgWithDimensionNotes from "./fixtures/createPcbSvgWithDimensionNotes"
 
-test("component to board", async () => {
+test("board to panel", async () => {
   const solver = new DimensionPlacementSolver(
     circuitJson as AnyCircuitElement[],
   )
