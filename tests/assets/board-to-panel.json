@@ -1,0 +1,123 @@
+[
+  {
+    "type": "source_group",
+    "source_group_id": "source_group_0",
+    "is_subcircuit": true,
+    "was_automatically_named": true,
+    "subcircuit_id": "subcircuit_source_group_0",
+    "parent_source_group_id": "source_group_2",
+    "parent_subcircuit_id": "subcircuit_source_group_2"
+  },
+  {
+    "type": "source_group",
+    "source_group_id": "source_group_1",
+    "is_subcircuit": true,
+    "was_automatically_named": true,
+    "subcircuit_id": "subcircuit_source_group_1",
+    "parent_source_group_id": "source_group_2",
+    "parent_subcircuit_id": "subcircuit_source_group_2"
+  },
+  {
+    "type": "source_group",
+    "source_group_id": "source_group_2",
+    "is_subcircuit": true,
+    "was_automatically_named": true,
+    "subcircuit_id": "subcircuit_source_group_2"
+  },
+  {
+    "type": "source_board",
+    "source_board_id": "source_board_0",
+    "source_group_id": "source_group_0"
+  },
+  {
+    "type": "source_board",
+    "source_board_id": "source_board_1",
+    "source_group_id": "source_group_1"
+  },
+  {
+    "type": "schematic_group",
+    "schematic_group_id": "schematic_group_0",
+    "is_subcircuit": true,
+    "subcircuit_id": "subcircuit_source_group_0",
+    "name": "unnamed_board1",
+    "center": { "x": 0, "y": 0 },
+    "width": 0,
+    "height": 0,
+    "schematic_component_ids": [],
+    "source_group_id": "source_group_0"
+  },
+  {
+    "type": "schematic_group",
+    "schematic_group_id": "schematic_group_1",
+    "is_subcircuit": true,
+    "subcircuit_id": "subcircuit_source_group_1",
+    "name": "unnamed_board1",
+    "center": { "x": 0, "y": -3.2 },
+    "width": 0,
+    "height": 0,
+    "schematic_component_ids": [],
+    "source_group_id": "source_group_1"
+  },
+  {
+    "type": "schematic_group",
+    "schematic_group_id": "schematic_group_2",
+    "is_subcircuit": true,
+    "subcircuit_id": "subcircuit_source_group_2",
+    "name": "unnamed_panel1",
+    "center": { "x": 0, "y": 0 },
+    "width": 0,
+    "height": 0,
+    "schematic_component_ids": [],
+    "source_group_id": "source_group_2"
+  },
+  {
+    "type": "pcb_board",
+    "pcb_board_id": "pcb_board_0",
+    "source_board_id": "source_board_0",
+    "center": { "x": -16, "y": 0 },
+    "thickness": 1.4,
+    "num_layers": 2,
+    "width": 30,
+    "height": 30,
+    "material": "fr4",
+    "position_mode": "relative_to_panel_anchor",
+    "display_offset_x": "-16mm",
+    "display_offset_y": "0mm"
+  },
+  {
+    "type": "pcb_board",
+    "pcb_board_id": "pcb_board_1",
+    "source_board_id": "source_board_1",
+    "center": { "x": 16, "y": 0 },
+    "thickness": 1.4,
+    "num_layers": 2,
+    "width": 30,
+    "height": 30,
+    "material": "fr4",
+    "position_mode": "relative_to_panel_anchor",
+    "display_offset_x": "16mm",
+    "display_offset_y": "0mm"
+  },
+  {
+    "type": "pcb_group",
+    "pcb_group_id": "pcb_group_0",
+    "is_subcircuit": true,
+    "subcircuit_id": "subcircuit_source_group_2",
+    "name": "unnamed_panel1",
+    "anchor_position": { "x": 0, "y": 0 },
+    "center": { "x": 0, "y": 0 },
+    "width": 100,
+    "height": 100,
+    "pcb_component_ids": [],
+    "source_group_id": "source_group_2",
+    "anchor_alignment": null
+  },
+  {
+    "type": "pcb_panel",
+    "pcb_panel_id": "pcb_panel_0",
+    "width": 100,
+    "height": 100,
+    "center": { "x": 0, "y": 0 },
+    "covered_with_solder_mask": true
+  }
+]
