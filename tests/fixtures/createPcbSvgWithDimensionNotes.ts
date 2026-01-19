@@ -8,13 +8,21 @@ export async function createPcbSvgWithDimensionNotes(
 ): Promise<string> {
   const dimension_notes: PcbNoteDimension[] = dimensions.map(
     (d, i): PcbNoteDimension => {
-      const length = Math.hypot(d.to.x - d.from.x, d.to.y - d.from.y)
+      let text: string
+      if (d.x_offset !== undefined) {
+        text = d.x_offset.toString()
+      } else if (d.y_offset !== undefined) {
+        text = d.y_offset.toString()
+      } else {
+        const length = Math.hypot(d.to.x - d.from.x, d.to.y - d.from.y)
+        text = length.toFixed(2)
+      }
       return {
         type: "pcb_note_dimension",
         pcb_note_dimension_id: `dim_${i}`,
         from: d.from,
         to: d.to,
-        text: length.toFixed(2),
+        text,
         offset_distance: d.offset_distance,
         offset_direction: d.offset_direction,
         font: "tscircuit2024",

@@ -2,7 +2,7 @@ import type { AnyCircuitElement, Length } from "circuit-json"
 import { BasePipelineSolver } from "@tscircuit/solver-utils"
 import type { PipelineStep } from "@tscircuit/solver-utils"
 import { NormalizeAnchorOffsetsSolver } from "./lib/normalize-anchor-offsets-solver"
-import type { NormalizedAnchorOffset } from "./lib/normalize-anchor-offsets"
+import { SplitOffsetsSolver } from "./lib/split-offsets-solver"
 export type { NormalizedAnchorOffset } from "./lib/normalize-anchor-offsets"
 
 export type SolverInput = AnyCircuitElement[]
@@ -16,12 +16,17 @@ export interface CreatedDimension {
     x: number
     y: number
   }
+  /** For split dimensions, the x/y offset values to display */
+  x_offset?: number
+  y_offset?: number
 }
 
 export type SolverOutput = CreatedDimension[]
 
 export class DimensionPlacementSolver extends BasePipelineSolver<SolverInput> {
-  pipelineDef: PipelineStep<NormalizeAnchorOffsetsSolver>[] = [
+  pipelineDef: PipelineStep<
+    NormalizeAnchorOffsetsSolver | SplitOffsetsSolver
+  >[] = [
     {
       solverName: "normalize_anchor_offsets",
       solverClass: NormalizeAnchorOffsetsSolver,
@@ -37,20 +42,22 @@ export class DimensionPlacementSolver extends BasePipelineSolver<SolverInput> {
         }
       },
     },
+    {
+      solverName: "split_offsets",
+      solverClass: SplitOffsetsSolver,
+      getConstructorParams: (self: DimensionPlacementSolver) => [
+        self.pipelineOutputs.normalized_anchor_offsets ?? [],
+      ],
+      onSolved: (self: DimensionPlacementSolver) => {
+        const solver = self.getSolver<SplitOffsetsSolver>("split_offsets")
+        if (solver) {
+          self.pipelineOutputs.created_dimensions = solver.getOutput()
+        }
+      },
+    },
   ]
 
-  constructor(inputProblem: SolverInput) {
-    super(inputProblem)
-  }
-
   override getOutput(): SolverOutput {
-    // TODO: implement next solver to calculate offset_distance and offset_direction
-    const normalized_offsets: NormalizedAnchorOffset[] =
-      this.pipelineOutputs.normalized_anchor_offsets ?? []
-
-    return normalized_offsets.map((norm_offset) => ({
-      from: norm_offset.from,
-      to: norm_offset.to,
-    }))
+    return this.pipelineOutputs.created_dimensions ?? []
   }
 }
